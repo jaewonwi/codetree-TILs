@@ -10,7 +10,7 @@ public class Main {
         int N = sc.nextInt();        
         int M = sc.nextInt();
 
-        visit = new boolean[N];
+        visit = new boolean[N+1];
         for (int i = 0; i <= N; i++){
             adjList.add(new ArrayList<>());
         }
