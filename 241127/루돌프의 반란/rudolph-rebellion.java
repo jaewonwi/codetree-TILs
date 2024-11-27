@@ -44,7 +44,6 @@ public class Main {
 
                 if (santa.stun == 0) {      // 산타 움직일 수 있는 상태(기절 X)
                     santa_move(santa);
-
                 } else if (santa.stun > 0) {    // 산타 기절
                     santa.stun--;
                 }
@@ -79,7 +78,7 @@ public class Main {
         if (map[nr][nc] == num) {  // 목표로 한 산타가 있다면 (어차피 제일 가까운 산타를 찾아가기 때문에 다른 산타를 만날 수는 없다)
             // 해당 위치의 산타 +C점 & 기절
             santa.score += C;
-            santa.stun += 2;    // ** 루돌프 다음에 산타가 움직이기 때문에 해당 턴에도 못 움직이고, 그 다음턴에도 못 움직이니까 +2
+            santa.stun = santa.stun == 0 ? santa.stun + 2 : santa.stun + 1 ;    // ** 루돌프 다음에 산타가 움직이기 때문에 해당 턴에도 못 움직이고, 그 다음턴에도 못 움직이니까 +2
 
             bounce_santa(num, d, C);
         }
