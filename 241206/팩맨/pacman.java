@@ -3,7 +3,7 @@ import java.util.*;
 
 public class Main {
     static int M, T, pr, pc, max;
-    static int[][] map, path, maxPath;
+    static int[][] map, deathmap, path, maxPath;
     static boolean[][] visit;
     static List<Monster> monsters = new ArrayList<>();
     static Queue<Monster> eggs = new ArrayDeque<>();
@@ -12,13 +12,14 @@ public class Main {
     public static void main(String[] args) throws Exception{
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(br.readLine());
-        // =============== 입력 ===============
         M = Integer.parseInt(st.nextToken());
         T = Integer.parseInt(st.nextToken());
         st = new StringTokenizer(br.readLine());
         pr = Integer.parseInt(st.nextToken())-1;
         pc = Integer.parseInt(st.nextToken())-1;
+
         map = new int[4][4];
+        deathmap = new int[4][4];
         for (int i = 0; i < M; i++){
             st = new StringTokenizer(br.readLine());
             int r = Integer.parseInt(st.nextToken())-1;
@@ -29,7 +30,6 @@ public class Main {
             map[r][c]++;
         }
 
-        // =============== 시뮬레이션 ===============
         path = new int[3][2];
         maxPath = new int[3][2];
         for (int t = 1; t <= T; t++){
@@ -43,7 +43,7 @@ public class Main {
 
             // 3. 팩맨 이동
             visit = new boolean[4][4];
-            visit[pr][pc] = true;
+//            visit[pr][pc] = true;     // ** 출발지 포함 안하는데, 다시 돌아오고싶으면 와도 되는거 아닌가?
             max = 0;
             find(pr, pc, 0, 0);
             for (int i = 0; i < 3; i++){
@@ -51,8 +51,9 @@ public class Main {
                 int c = maxPath[i][1];
 
                 for (Monster monster : monsters){
-                    if (monster.r == r && monster.c == c){
+                    if (monster.r == r && monster.c == c && monster.rem == -1){ // 팩맨이 간 자리에 살아있는 몬스터들
                         monster.rem = 2;
+                        deathmap[monster.r][monster.c]--;
                         map[monster.r][monster.c]--;
                     }
                 }
@@ -66,10 +67,10 @@ public class Main {
             // 4. 시체 소멸
             for (int i = monsters.size()-1; i >= 0; i-- ){
                 Monster monster = monsters.get(i);
-                if (monster.rem > 0){
+                if (monster.rem > 0){   // 시체라면
                     monster.rem--;
                     if (monster.rem == 0){
-                        map[monster.r][monster.c]--;
+                        deathmap[monster.r][monster.c]++;
                         monsters.remove(i);
                     }
                 }
@@ -109,7 +110,7 @@ public class Main {
             int nr = r + dr[d];
             int nc = c + dc[d];
 
-            if (!inRange(nr, nc)) continue;
+            if (!inRange(nr, nc) || visit[nr][nc]) continue;
 
             visit[nr][nc] = true;
             path[turn][0] = nr;
@@ -126,12 +127,13 @@ public class Main {
 
             if (nr == pr && nc == pc) continue; // 팩맨
             if (!inRange(nr, nc)) continue;     // 격자 밖
-            if (map[nr][nc] < 0) continue;      // 몬스터 시체
+            if (deathmap[nr][nc] < 0) continue;      // 몬스터 시체
 
             map[m.r][m.c]--;
             map[nr][nc]++;
             m.r = nr;
             m.c = nc;
+            m.d = (m.d+i) % 8;
             break;
         }
     }
@@ -147,6 +149,15 @@ public class Main {
             this.r = r;
             this.c = c;
             this.d = d;
+        }
+    }
+
+    static void printMap(int[][] map){
+        for (int i = 0; i < 4; i++){
+            for (int j = 0; j < 4; j++){
+                System.out.print(map[i][j] + " ");
+            }
+            System.out.println();
         }
     }
 }
