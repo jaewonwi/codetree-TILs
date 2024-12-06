@@ -52,8 +52,8 @@ public class Main {
 
                 for (Monster monster : monsters){
                     if (monster.r == r && monster.c == c && monster.rem == -1){ // 팩맨이 간 자리에 살아있는 몬스터들
-                        monster.rem = 2;
-                        deathmap[monster.r][monster.c]--;
+                        monster.rem = 3;
+                        deathmap[monster.r][monster.c]++;
                         map[monster.r][monster.c]--;
                     }
                 }
@@ -70,7 +70,7 @@ public class Main {
                 if (monster.rem > 0){   // 시체라면
                     monster.rem--;
                     if (monster.rem == 0){
-                        deathmap[monster.r][monster.c]++;
+                        deathmap[monster.r][monster.c]--;
                         monsters.remove(i);
                     }
                 }
@@ -115,26 +115,26 @@ public class Main {
             visit[nr][nc] = true;
             path[turn][0] = nr;
             path[turn][1] = nc;
-            find(nr, nc, map[nr][nc] > 0 ? cnt + map[nr][nc] : cnt, turn+1);
+            find(nr, nc, cnt + map[nr][nc], turn+1);
             visit[nr][nc] = false;
         }
     }
 
     static void move(Monster m){
         for (int i = 0; i < 8; i++){
-            int nr = m.r + dr[(m.d+i) % 8];
-            int nc = m.c + dc[(m.d+i) % 8];
+            int nr = m.r + dr[(m.d + i) % 8];
+            int nc = m.c + dc[(m.d + i) % 8];
 
             if (nr == pr && nc == pc) continue; // 팩맨
             if (!inRange(nr, nc)) continue;     // 격자 밖
-            if (deathmap[nr][nc] < 0) continue;      // 몬스터 시체
+            if (deathmap[nr][nc] > 0) continue;      // 몬스터 시체
 
             map[m.r][m.c]--;
             map[nr][nc]++;
             m.r = nr;
             m.c = nc;
-            m.d = (m.d+i) % 8;
-            break;
+            m.d = (m.d + i) % 8;
+            return;
         }
     }
 
@@ -149,15 +149,6 @@ public class Main {
             this.r = r;
             this.c = c;
             this.d = d;
-        }
-    }
-
-    static void printMap(int[][] map){
-        for (int i = 0; i < 4; i++){
-            for (int j = 0; j < 4; j++){
-                System.out.print(map[i][j] + " ");
-            }
-            System.out.println();
         }
     }
 }
