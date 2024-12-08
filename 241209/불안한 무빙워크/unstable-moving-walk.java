@@ -4,7 +4,7 @@ import java.util.*;
 public class Main {
     static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
     static StringTokenizer st;
-    static int n, k, start = 0, end, zero, t = 0;
+    static int n, k, size, start = 0, end, zero, t = 0;
     static int[] stablility, cnt;
     static List<Integer> people = new ArrayList<>();    // 사람의 위치. 즉, idx 저장
 
@@ -13,11 +13,12 @@ public class Main {
         st = new StringTokenizer(br.readLine());
         n = Integer.parseInt(st.nextToken());
         k = Integer.parseInt(st.nextToken());
-        stablility = new int[2 * n];
-        cnt = new int[2 * n];
-        end = n;
+        size = 2*n;
+        stablility = new int[size];
+        cnt = new int[size];
+        end = n-1;
         st = new StringTokenizer(br.readLine());
-        for (int i = 0; i < 2 * n; i++){
+        for (int i = 0; i < size; i++){
             stablility[i] = Integer.parseInt(st.nextToken());
         }
 
@@ -26,7 +27,13 @@ public class Main {
             t++;    // 몇번째 실험인지
 
             // 1. 무빙 워크 회전
-            rotate();
+            start = (start - 1 + size) % size;
+            end = (end - 1 + size) % size;
+//            System.out.println(start+" & "+end);
+            if (cnt[end] != 0){
+                cnt[end]--;
+                zero++;
+            }
 
             // 2. 사람 이동
             if (people.size() > 0) move();
@@ -50,12 +57,11 @@ public class Main {
     static void move(){   // idx: 몇번째 사람인지
         for (int i = 0; i < people.size(); i++){
             int cur = people.get(i);  // 이 사람의 위치
-            int next = (cur + 1) % 20;
+            int next = (cur + 1) % size;
 
             if (stablility[next] == 0 || cnt[next] != 0) return;
 
             cnt[cur]--;
-
             stablility[next]--;
             if (stablility[next] == 0) zero++;
 
@@ -67,10 +73,5 @@ public class Main {
                 people.set(i, next);
             }
         }
-    }
-
-    static void rotate(){
-        start = (start - 1 + 2*n) % 2*n;
-        end = (end - 1 + 2*n) % 2*n;
     }
 }
