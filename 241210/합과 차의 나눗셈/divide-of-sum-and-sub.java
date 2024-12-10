@@ -6,6 +6,7 @@ public class Main {
         int a = sc.nextInt();
         int b = sc.nextInt();
         float result = (float)(a+b)/(a-b);
-        System.out.println(Math.round(result*100)/100.0);    
+        // System.out.println(Math.round(result*100)/100.0);    
+        System.out.printf("%.2f", result);
     }
 }
