@@ -5,7 +5,7 @@ public class Main {
         Scanner sc = new Scanner(System.in);
         int a = sc.nextInt();
         int b = sc.nextInt();
-        double result = (double)(a+b)/(a-b);
+        float result = (float)(a+b)/(a-b);
         System.out.println(Math.round(result*100)/100.0);    
     }
 }
