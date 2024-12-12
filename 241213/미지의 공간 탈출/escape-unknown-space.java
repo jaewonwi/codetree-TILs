@@ -90,7 +90,7 @@ public class Main {
 
         bfsGround();    // 지표면 bfs
 
-        System.out.println(ground[end.r][end.c]);
+        System.out.println(ground[end.r][end.c] == 0 ? -1 : ground[end.r][end.c]);
     }
 
     static void bfsGround(){
