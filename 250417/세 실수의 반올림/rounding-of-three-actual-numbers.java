@@ -8,7 +8,7 @@ public class Main {
         double b = sc.nextDouble();
         double c = sc.nextDouble();
         System.out.println(Math.round(a*1000)/1000.0);
-        System.out.printf("%.3f", b);
+        System.out.printf("%.3f\n", b);
         System.out.printf("%.3f", c);
     }
 }
