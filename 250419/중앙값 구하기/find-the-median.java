@@ -6,12 +6,24 @@ public class Main {
         int B = sc.nextInt();
         int C = sc.nextInt();
 
-        if (A < B && B < C){
-            System.out.println(B);
-        } else if (B < C && C < A){
-            System.out.println(C);
-        } else {
-            System.out.println(A);
+        if (A < B && A < C){
+            if (B < C){
+                System.out.println(B);
+            } else {
+                System.out.println(C);
+            }
+        } else if (B < C && B < A){
+            if (A < C){
+                System.out.println(A);
+            } else {
+                System.out.println(C);
+            }
+        } else if (C < A && C < B){
+            if (A < B){
+                System.out.println(A);
+            } else {
+                System.out.println(B);
+            }
         }
     }
 }
