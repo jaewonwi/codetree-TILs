@@ -8,9 +8,9 @@ public class Main {
         if (word1.length() == word2.length()){
             System.out.println("same");
         } else if (word1.length() > word2.length()){
-            System.out.println(word1+" "+word1.length);
+            System.out.println(word1+" "+word1.length();
         } else {
-            System.out.println(word2+" "+word2.length);
+            System.out.println(word2+" "+word2.length());
         }
     }
 }
