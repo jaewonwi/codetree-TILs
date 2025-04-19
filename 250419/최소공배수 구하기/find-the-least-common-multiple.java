@@ -22,7 +22,7 @@ public class Main {
             m = r;
         }
 
-        // m이 최대 공약수. 최소공배수? a/gcd * b/gcd * gcd
+        // m이 최대 공약수. 최소공배수? a/gcd * b/gcd * gcd <==> a*b/gcd
         on /= m;
         om /= m;
         return on * om * m;
