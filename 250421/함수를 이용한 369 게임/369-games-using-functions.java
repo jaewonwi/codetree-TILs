@@ -20,9 +20,9 @@ public class Main {
 
     static boolean isExist369(int n){
         while (n >= 10){
-            int div = n / 10;
+            int div = n % 10;
             if (div == 3 || div == 6 || div == 9) return true;
-            n %= 10;
+            n /= 10;
         }
 
         if (n < 10){
