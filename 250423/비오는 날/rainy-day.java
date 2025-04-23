@@ -15,15 +15,15 @@ public class Main {
             days[i] = new Day(date, day, weather);
         }
 
-        LocalDate today = LocalDate.now();
+        LocalDate today = LocalDate.of(2000,1,1);
         Day ans = days[0];
         long minDiff = Long.MAX_VALUE;
         for (int i = 0; i < n; i++){
             Day cur = days[i];
-            if (!cur.weather.equals("Rain")) continue;
+            if (!cur.weather.equals("Rain")) continue;  // 비오는 날이 아니라면 패스
 
-            long diff = Math.abs(ChronoUnit.DAYS.between(today, cur.date));
-            if (diff < minDiff){
+            long diff = Math.abs(ChronoUnit.DAYS.between(today, cur.date));     // 날짜 차이 구하기
+            if (diff < minDiff){    // 차이가 최소라면
                 minDiff = diff;
                 ans = cur;
             }
