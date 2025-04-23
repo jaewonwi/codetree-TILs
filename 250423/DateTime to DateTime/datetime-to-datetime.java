@@ -9,6 +9,6 @@ public class Main {
         int origin = 60*11 + 11;
         int target = 60*24*(A-11) + 60*B + C;
 
-        System.out.println(target - origin);
+        System.out.println(target < origin ? -1 : target - origin);
     }
 }
