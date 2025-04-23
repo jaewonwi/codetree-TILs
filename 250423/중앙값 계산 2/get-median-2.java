@@ -12,11 +12,7 @@ public class Main {
         
         for (int i = 0; i < n; i++){
             if (i % 2 == 0){
-                if ((i+1) < n){
-                    Arrays.sort(arr, 0, i+1);
-                } else {
-                    Arrays.sort(arr, 0, i);
-                }
+                Arrays.sort(arr, 0, i+1);
                 System.out.print(arr[i/2]+" ");
             }
         }   
