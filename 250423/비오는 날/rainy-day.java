@@ -22,9 +22,8 @@ public class Main {
             Day cur = days[i];
             if (!cur.weather.equals("Rain")) continue;
 
-            long diff = ChronoUnit.DAYS.between(today, cur.date);
-            if (diff > 0 &&  diff < minDiff){
-                // System.out.println(cur.date.toString()+" : "+diff+"차이 ");
+            long diff = Math.abs(ChronoUnit.DAYS.between(today, cur.date));
+            if (diff < minDiff){
                 minDiff = diff;
                 ans = cur;
             }
@@ -38,7 +37,7 @@ public class Main {
         String day, weather;
 
         public Day(String ymd, String day, String weather){
-            this.date = LocalDate.parse(ymd);       //
+            this.date = LocalDate.parse(ymd);       // "yyyy-mm-dd" -> LocalDate 
             this.day = day;
             this.weather = weather;
         }
