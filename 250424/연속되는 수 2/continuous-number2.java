@@ -8,7 +8,8 @@ public class Main {
         for (int i = 0; i < n; i++) {
             arr[i] = sc.nextInt();
         }
-        int cnt = 0;
+
+        int cnt = 1;
         int max = 0;
         for (int i = 0; i < n; i++){
             if (i == 0 || arr[i] != arr[i-1]){
