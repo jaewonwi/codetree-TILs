@@ -1,0 +1,30 @@
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        int[] arr = new int[n];
+        for (int i = 0; i < n; i++)
+            arr[i] = sc.nextInt();
+        
+        int cnt = 1;
+        int max = 0;
+        for (int i = 0; i < n; i++){
+            if (i == 0 || !isSame(arr[i],arr[i-1])){
+                max = Math.max(max, cnt);
+                cnt = 1;
+            } else {
+                cnt++;
+            }
+        }
+        max = Math.max(max, cnt);
+        System.out.println(max);
+    }
+
+    static boolean isSame(int a, int b){
+        if (a > 0 && b > 0) return true;
+        else if (a < 0 && b < 0) return true;
+        else return false;
+    }
+}
