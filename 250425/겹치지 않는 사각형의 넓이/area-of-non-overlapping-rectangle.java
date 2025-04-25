@@ -2,20 +2,21 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        int ax1 = sc.nextInt();
-        int ay1 = sc.nextInt();
-        int ax2 = sc.nextInt();
-        int ay2 = sc.nextInt();
+        int offset = 1000;
+        int ax1 = sc.nextInt() + offset;
+        int ay1 = sc.nextInt() + offset;
+        int ax2 = sc.nextInt() + offset;
+        int ay2 = sc.nextInt() + offset;
 
-        int bx1 = sc.nextInt();
-        int by1 = sc.nextInt();
-        int bx2 = sc.nextInt();
-        int by2 = sc.nextInt();
+        int bx1 = sc.nextInt() + offset;
+        int by1 = sc.nextInt() + offset;
+        int bx2 = sc.nextInt() + offset;
+        int by2 = sc.nextInt() + offset;
         
-        int mx1 = sc.nextInt();
-        int my1 = sc.nextInt();
-        int mx2 = sc.nextInt();
-        int my2 = sc.nextInt();
+        int mx1 = sc.nextInt() + offset;
+        int my1 = sc.nextInt() + offset;
+        int mx2 = sc.nextInt() + offset;
+        int my2 = sc.nextInt() + offset;
         
         boolean[][] map = new boolean[2001][2001];
         int ans = 0;
@@ -33,7 +34,9 @@ public class Main {
         }
         for (int i = mx1; i < mx2; i++){
             for (int j = my1; j < my2; j++){
-                if (map[i][j]) ans--;
+                if (map[i][j]){
+                    ans--;
+                }
                 map[i][j] = false;
             }
         }
