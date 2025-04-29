@@ -5,9 +5,9 @@ public class Main {
         int N = sc.nextInt();
         int offset = 10000;
         int cur = offset;
-        int[] color = new int[offset * 2 + 1];    // 마지막으로 칠한 색 (white 1, black 2, grey -1)
-        int[] cntB = new int[offset * 2 + 1];    // 검정 덧칠한 횟수
-        int[] cntW = new int[offset * 2 + 1];    // 흰색 덧칠한 횟수
+        int[] color = new int[offset * 3];    // 마지막으로 칠한 색 (white 1, black 2, grey -1)
+        int[] cntB = new int[offset * 3];    // 검정 덧칠한 횟수
+        int[] cntW = new int[offset * 3];    // 흰색 덧칠한 횟수
         for (int i = 0; i < N; i++) {
             int x = sc.nextInt();
             char d = sc.next().charAt(0);
