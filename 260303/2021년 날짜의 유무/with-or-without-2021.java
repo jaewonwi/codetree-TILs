@@ -9,14 +9,15 @@ public class Main {
     }
 
     static boolean isExist(int m, int d){
-        if (m > 12) return false;
-        if (d > 31) return false;
+        if (m <= 12 && d <= lastDay(m))
+            return true;
+        
+        return false;
+    }
 
-        if (m == 2)
-            return d <= 28 ? true : false;
-        else if (m == 1 || m == 3 || m == 5 || m == 7 || m == 8 || m == 10 || m == 12)
-            return d <= 31 ? true : false;
-        else
-            return d <= 30 ? true : false;
+    static int lastDay(int m){
+        if (m == 2) return 28;
+        if (m == 4 || m == 6 || m == 9 || m == 11) return 30;
+        return 31;
     }
 }
