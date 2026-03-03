@@ -5,22 +5,41 @@ public class Main {
         int a = sc.nextInt();
         char o = sc.next().charAt(0);
         int c = sc.nextInt();
-        
+        int answer = Integer.MIN_VALUE;
         switch (o) {
             case '+':
-                System.out.printf("%d %c %d = %d", a, o, c, a + c);
+                answer = plus(a,c);
                 break;
             case '-':
-                System.out.printf("%d %c %d = %d", a, o, c, a - c); 
+                answer = minus(a,c);
                 break;
             case '/':
-                System.out.printf("%d %c %d = %d", a, o, c, a / c); 
+                answer = divide(a,c);
                 break;
             case '*':
-                System.out.printf("%d %c %d = %d", a, o, c, a * c); 
+                answer = mult(a,c);
                 break;
             default:
-                System.out.printf("False");
+                break;
         }
+        if (answer == Integer.MIN_VALUE)
+            System.out.print("False");
+        else 
+            System.out.printf("%d %c %d = %d", a, o, c, answer); 
     }
+
+    static int plus(int a, int c){
+        return a + c;
+    }
+
+    static int minus(int a, int c){
+        return a - c;
+    }
+    static int divide(int a, int c){
+        return a / c;
+    }
+    static int mult(int a, int c){
+        return a * c;
+    }
+
 }
