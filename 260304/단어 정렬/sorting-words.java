@@ -12,6 +12,6 @@ public class Main {
         Arrays.sort(wordList);
         for (int i = 0; i < n; i++){
             System.out.println(wordList[i]);
-        }a
+        }
     }
 }
