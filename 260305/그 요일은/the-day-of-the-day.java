@@ -20,9 +20,9 @@ public class Main {
             if (weeks[i].equals(A))
                 week = i;
         }
-
-        int cnt = (diff - week) / 7;
-        if (((diff - week) % 7)==0) cnt++;
+        
+        int cnt = diff / 7;
+        if ((diff % 7) == week) cnt++;
         System.out.println(cnt);
     }
 
