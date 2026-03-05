@@ -20,9 +20,16 @@ public class Main {
             if (weeks[i].equals(A))
                 week = i;
         }
-        
-        int cnt = diff / 7;
-        if ((diff % 7) == week) cnt++;
+
+        int cnt = 0;
+        diff -= week;   // 월요일부터 -> 찾아야하는 요일까지 차이를 줄여주고,
+        if (diff > 0) cnt++;          // 찾았다면 1번 등장했으니까 카운트
+        else {          // 못 찾았다면 없으니까 바로 return;
+            System.out.println(cnt);    
+            return;
+        }
+
+        cnt += diff / 7;            // 남은 차이를 일주일로 나눠서 A 요일이 몇 번 등장하는지 카운트
         System.out.println(cnt);
     }
 
