@@ -14,12 +14,10 @@ public class Main {
     }
 
     public static int toTen(String str){
-        char[] chArr = str.toCharArray();
+        int[] chArr = str.chars().map(c -> c - '0').toArray();;
         int result = 0;
         for (int i = 0; i < chArr.length; i++){
-            if (chArr[i] == '1'){
-                result = result * 2 + 1;
-            }
+            result = result * 2 + chArr[i];
         }
         return result;
     }
