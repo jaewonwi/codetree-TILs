@@ -9,9 +9,8 @@ public class Main {
         int cnt = 0;
         int[] binary = new int[32];
         while (n > 0){
-            binary[i] = n % b;
+            binary[cnt++] = n % b;
             n /= b;
-            cnt++;
         }
 
         for (int i = cnt-1; i >= 0; i--){
