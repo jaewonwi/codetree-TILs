@@ -7,13 +7,13 @@ public class Main {
         int m2 = sc.nextInt();
         int d2 = sc.nextInt();
         
-        int[] numberOfDays = new int[]{0,31,28,31,30,31,30,31,31,30,31,30,31};
+        int[] numberOfDays = new int[{0,31,28,31,30,31,30,31,31,30,31,30,31};
         int days1 = d1;
-        for (int i = 1; i <= m1; i++){
+        for (int i = 1; i < m1; i++){
             days1 += numberOfDays[i];
         }
         int days2 = d2;
-        for (int i = 1; i <= m2; i++){
+        for (int i = 1; i < m2; i++){
             days2 += numberOfDays[i];
         }
 
