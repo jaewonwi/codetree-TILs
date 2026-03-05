@@ -5,9 +5,9 @@ public class Main {
         Scanner sc = new Scanner(System.in);
         String binary = sc.next();
         char[] bChars = binary.toCharArray();
-        int[] bArr = new int[binary.length];
+        int[] bArr = new int[binary.length()];
         for (int i = 0; i < bChars.length; i++){
-            bArr[i] = bChars - '0';
+            bArr[i] = bChars[i] - '0';
         }
         
         int num = 0;
