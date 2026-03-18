@@ -3,55 +3,59 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        int rect1_x1 = sc.nextInt()+1000;
-        int rect1_y1 = sc.nextInt()+1000;
-        int rect1_x2 = sc.nextInt()+1000;
-        int rect1_y2 = sc.nextInt()+1000;
-
-        int rect2_x1 = sc.nextInt()+1000;
-        int rect2_y1 = sc.nextInt()+1000;
-        int rect2_x2 = sc.nextInt()+1000;
-        int rect2_y2 = sc.nextInt()+1000;
+        int offset = 1000;
+        int rect1_x1 = sc.nextInt() + offset;
+        int rect1_y1 = sc.nextInt() + offset;
+        int rect1_x2 = sc.nextInt() + offset;
+        int rect1_y2 = sc.nextInt() + offset;
+        int rect2_x1 = sc.nextInt() + offset;
+        int rect2_y1 = sc.nextInt() + offset;
+        int rect2_x2 = sc.nextInt() + offset;
+        int rect2_y2 = sc.nextInt() + offset;
         
-        boolean[][] map = new boolean[2001][2001];
-        // 1. 겹치는 부분 제외
-        // 2. 1번사각형 범위 보면서 -> 제일 왼쪽,오른쪽,위,아래 좌표 찾기
-        for (int i = rect1_y1; i < rect1_y2; i++){
-            for (int j = rect1_x1; j < rect1_x2; j++){
-                map[i][j] = true;
-            }
-        }
-        
-        for (int i = rect2_y1; i < rect2_y2; i++){
-            for (int j = rect2_x1; j < rect2_x2; j++){
-                map[i][j] = false;
+        boolean[][] arr = new boolean[2001][2001];
+        // 1
+        for (int i = rect1_x1; i < rect1_x2; i++){
+            for (int j = rect1_y1; j < rect1_y2; j++){
+                arr[i][j] = true;
             }
         }
 
-        int left = 3000, bottom = 3000;
-        int top = 0, right = 0;
-        for (int i = rect1_y1; i < rect1_y2; i++){
-            for (int j = rect1_x1; j < rect1_x2; j++){
-                if (!map[i][j]) continue;
+        // 2
+        for (int i = rect2_x1; i < rect2_x2; i++){
+            for (int j = rect2_y1; j < rect2_y2; j++){
+                arr[i][j] = false;
+            }
+        }
 
-                if (left > j){
-                    left = j;
-                }
-
-                if (bottom > i){
-                    bottom = i;
-                }
-
-                if (top < i){
-                    top = i;
-                }
-
-                if (right < j){
-                    right = j;
+        // rem range
+        int minx = 2001, miny = 2001;
+        int maxx = 0, maxy = 0;
+        for (int i = rect1_x1; i < rect1_x2; i++){
+            for (int j = rect1_y1; j < rect1_y2; j++){
+                if (arr[i][j]){
+                    if (i < minx)   minx = i;
+                    if (j < miny)   miny = j;
+                    if (i > maxx)   maxx = i;
+                    if (j > maxy)   maxy = j;
                 }
             }
         }
-        
-        System.out.print((right - left + 1) * (top - bottom + 1));
+
+        // print(arr, rect1_x2+1, rect1_y2+1);
+        int ans = (maxx-minx+1) * (maxy-miny+1);
+        if (minx == 2001 && miny == 2001) ans = 0;
+        System.out.println(ans);
+    }
+
+    static void print(boolean[][] arr, int x, int y){
+        for (int i = 1000; i < x; i++){
+            for (int j = 1000; j < y; j++){
+                if (arr[i][j]) System.out.print("O");
+                else System.out.print("X");
+            }
+            System.out.println();
+        }
+        System.out.println("======================");
     }
 }
