@@ -4,7 +4,7 @@ public class Main {
         Scanner sc = new Scanner(System.in);
         int n = sc.nextInt();
         int[][] map = new int[201][201];
-        boolean flag = true;    // t: red, f: blue
+        int flag = 1;    // 1: red, -1: blue
         int offset = 100;
         for (int i = 0; i < n; i++) {
             int x1 = sc.nextInt() + offset;
@@ -13,17 +13,18 @@ public class Main {
             int y2 = sc.nextInt() + offset;
 
             for (int j = x1; j < x2; j++){
-                for (int k = x1; k < x2; k++){
+                for (int k = y1; k < y2; k++){
                     map[j][k] = flag;
                 }
             }
-            flag = !flag;
+            
+            flag *= -1;
         }
 
         int ans = 0;
         for (int i = 0; i < 201; i++){
             for (int j = 0; j < 201; j++){
-                if (!map[i][j]) ans++;
+                if (map[i][j] == -1) ans++;
             }
         }
 
