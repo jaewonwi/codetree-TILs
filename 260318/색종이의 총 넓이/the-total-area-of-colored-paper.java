@@ -10,9 +10,9 @@ public class Main {
             x[i] = sc.nextInt() + 100;
             y[i] = sc.nextInt() + 100;
 
-            for (int i = x[i]; i < x[i] + 8; i++){
-                for (int j = y[i]; i < y[i] + 8; i++){
-                    paper[i][j] = true;
+            for (int k = x[i]; k < x[i] + 8; k++){
+                for (int j = y[i]; j < y[i] + 8; j++){
+                    paper[k][j] = true;
                 }   
             }
         }
