@@ -20,21 +20,21 @@ public class Main {
         // A
         for (int i = ax1; i < ax2; i++){
             for (int j = ay1; j < ay2; j++){
-                arr[i][j] = true;
+                arr[i+1000][j+1000] = true;
             }
         }
 
         //B
         for (int i = bx1; i < bx2; i++){
             for (int j = by1; j < by2; j++){
-                arr[i][j] = true;
+                arr[i+1000][j+1000] = true;
             }
         }
 
         // M
         for (int i = mx1; i < mx2; i++){
             for (int j = my1; j < my2; j++){
-                arr[i][j] = false;
+                arr[i+1000][j+1000] = false;
             }
         }
 
