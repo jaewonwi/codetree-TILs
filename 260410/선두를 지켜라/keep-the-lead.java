@@ -6,8 +6,8 @@ public class Main {
         int n = sc.nextInt();
         int m = sc.nextInt();
 
-        int[] posA = new int[1001];
-        int[] posB = new int[1001];
+        int[] posA = new int[1000_001];
+        int[] posB = new int[1000_001];
         
         int idx = 0;
         int max = 0;
